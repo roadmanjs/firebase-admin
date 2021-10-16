@@ -1,38 +1,27 @@
 
 <p align="center">
-  <h1 align="center"> Roadman - <a href="https://couchset.org" target="_blank">CouchSet</a>   </h1>
+  <h1 align="center"> Roadman - <a href="https://firebase.google.com" target="_blank">Firebase Admin</a>   </h1>
 </p>
 
 
-<div align="center">
-
-<img width="500px" src="./docs/couchset-roadman.jpg"></img>
-
-
-</div>
-
-
-## A roadman for couchbase using couchset.
+## A roadman for firebase-admin.
 
 ### How to use
 ```
-yarn add @roadmanjs/couchset
+yarn add @roadmanjs/firebase-admin
 ```
 
 app.ts
 ```ts
 import {roadman} from 'roadman'
-import {couchsetRoadman} from '@roadmanjs/couchset';
+import {firebaseRoadman} from '@roadmanjs/firebase-admin';
 
 await roadman({
-  roadmen: [couchsetRoadman]
+  roadmen: [firebaseRoadman]
 });
 ```
 
 #### Env required
 ```sh
-COUCHBASE_URL= 
-COUCHBASE_BUCKET= 
-COUCHBASE_USERNAME= 
-COUCHBASE_PASSWORD=
+FIREBASE_SA= 
 ```

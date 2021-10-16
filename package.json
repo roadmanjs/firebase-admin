@@ -1,8 +1,7 @@
 {
     "name": "@roadmanjs/firebase-admin",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "A roadman for firebase-admin",
-    
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [

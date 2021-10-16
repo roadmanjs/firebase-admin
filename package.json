@@ -1,7 +1,8 @@
 {
-    "name": "roadman-template",
-    "version": "0.0.0",
-    "description": "My cool roadman package",
+    "name": "@roadmanjs/firebase-admin",
+    "version": "0.0.1",
+    "description": "A roadman for firebase-admin",
+    
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
@@ -68,9 +69,11 @@
         "typescript": ">=2.0"
     },
     "dependencies": {
+        "@roadmanjs/core": "^0.0.3",
         "chalk": "^4.1.0",
         "debug": "^4.3.1",
         "dotenv": "^8.2.0",
+        "firebase-admin": "^10.0.0",
         "lodash": "^4.17.20"
     }
 }

@@ -21,7 +21,5 @@ export const MediaDataTypeFragment = gql`
         mimetype
         encoding
         url
-        createdAt
-        updatedAt
     }
 `;

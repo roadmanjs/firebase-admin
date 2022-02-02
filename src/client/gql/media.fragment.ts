@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 
 export interface FileStringInput {
     filename?: string;
-    mimetype?: string;
-    uri?: string;
+    mimetype: string;
+    uri: string;
 }
 
 export interface MediaDataType {

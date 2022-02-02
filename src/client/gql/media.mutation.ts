@@ -11,8 +11,8 @@ export const UPLOAD_FILES_MUTATION = gql`
 `;
 
 export const UPLOAD_STRING_FILES_MUTATION = gql`
-    mutation UploadFiles($owner: String, $files: [FileStringInput!]!) {
-        data: upload(owner: $owner, files: $files) {
+    mutation UploadStringFiles($owner: String, $files: [FileStringInput!]!) {
+        data: uploadString(owner: $owner, files: $files) {
             ...MediaDataTypeFragment
         }
     }

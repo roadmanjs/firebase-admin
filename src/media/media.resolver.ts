@@ -18,7 +18,7 @@ export class MediaResolver {
     async upload(
         @Arg('files', () => [GraphQLUpload])
         files: FileInput[],
-        @Arg('owner', {nullable: true}) owner: string
+        @Arg('owner', () => String, {nullable: true}) owner: string
     ): Promise<MediaDataType[]> {
         const [error, allFiles] = await awaitTo(
             Promise.all(

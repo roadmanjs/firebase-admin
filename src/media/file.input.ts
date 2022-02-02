@@ -4,18 +4,18 @@ import {MediaDataType} from './media.model';
 
 @InputType()
 export class FileInput implements Partial<MediaDataType & File> {
-    @Field() filename: string;
+    @Field(() => String, {nullable: true}) filename: string;
 
-    @Field() mimetype: string;
+    @Field(() => String, {nullable: true}) mimetype: string;
 
-    @Field() encoding: string;
+    @Field(() => String, {nullable: true}) encoding: string;
 }
 
-@InputType()
+@InputType('FileStringInput')
 export class FileStringInput {
-    @Field() filename: string;
+    @Field(() => String, {nullable: true}) filename: string;
 
-    @Field() mimetype: string;
+    @Field(() => String, {nullable: true}) mimetype: string;
 
-    @Field() uri: string;
+    @Field(() => String, {nullable: true}) uri: string;
 }

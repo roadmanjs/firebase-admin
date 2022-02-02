@@ -17,7 +17,7 @@ export class MediaResolver {
     // for web based Files
     @Mutation(() => [MediaDataType])
     async upload(
-        @Arg('files', () => [GraphQLUpload])
+        @Arg('files', () => [GraphQLUpload], {nullable: false})
         files: FileInput[],
         @Arg('owner', () => String, {nullable: true}) owner: string
     ): Promise<MediaDataType[]> {
@@ -90,7 +90,7 @@ export class MediaResolver {
     // For expo strings files in base64
     @Mutation(() => [MediaDataType])
     async uploadString(
-        @Arg('files', () => [FileStringInput])
+        @Arg('files', () => [FileStringInput], {nullable: false})
         files: FileStringInput[],
         @Arg('owner', () => String, {nullable: true}) owner: string
     ): Promise<MediaDataType[]> {

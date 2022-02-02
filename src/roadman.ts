@@ -1,7 +1,9 @@
 import {RoadMan, RoadmanBuild} from '@roadmanjs/core';
 
+import MediaResolver from './media/media.resolver';
 import chalk from 'chalk';
 import {configureFirebase} from './firebase';
+import {log} from '@roadmanjs/logs';
 
 /**
  * A firebase roadman
@@ -10,7 +12,7 @@ import {configureFirebase} from './firebase';
 export const firebaseRoadman: RoadMan = async (args: RoadmanBuild): Promise<RoadmanBuild> => {
     const {projectId} = configureFirebase();
 
-    console.log(
+    log(
         'ROADMAN: Firebase',
         chalk.greenBright(
             '**************************************ProjectID********************',
@@ -20,3 +22,5 @@ export const firebaseRoadman: RoadMan = async (args: RoadmanBuild): Promise<Road
 
     return args;
 };
+
+export const getMediaFileUploadResolvers = () => [MediaResolver];

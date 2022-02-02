@@ -10,3 +10,12 @@ export class FileInput implements Partial<MediaDataType & File> {
 
     @Field() encoding: string;
 }
+
+@InputType()
+export class FileStringInput {
+    @Field() filename: string;
+
+    @Field() mimetype: string;
+
+    @Field() uri: string;
+}

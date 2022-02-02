@@ -3,7 +3,7 @@ import {GraphQLUpload} from 'graphql-upload';
 import {promisify} from 'util';
 import {finished} from 'stream';
 import {Arg, Mutation, Resolver} from 'type-graphql';
-import {FileInput} from './file.input';
+import {FileInput, FileStringInput} from './file.input';
 import {MediaDataModel, MediaDataType} from './media.model';
 import {generateUUID} from '../_utils/uuid';
 import {getFileExtension} from '../_utils/file.utils';
@@ -14,6 +14,7 @@ import fs from 'fs';
 const finishes = promisify(finished);
 @Resolver(MediaDataType)
 export class MediaResolver {
+    // for web based Files
     @Mutation(() => [MediaDataType])
     async upload(
         @Arg('files', () => [GraphQLUpload])
@@ -52,6 +53,89 @@ export class MediaResolver {
                         fullfilename,
                         mimetype
                     );
+                    if (!savedToCloudUrl) {
+                        throw new Error('Not saved to cloud, please try again');
+                    }
+
+                    // Save file to db
+                    const newMediaData: MediaDataType = {
+                        id: newFileNameID,
+                        name: filename,
+                        filename,
+                        mimetype,
+                        encoding,
+                        owner,
+                        url: savedToCloudUrl,
+                    };
+
+                    await MediaDataModel.create<MediaDataType>(newMediaData);
+
+                    // Return file
+                    return newMediaData;
+                })
+            )
+        );
+
+        if (allFiles) {
+            return allFiles;
+        }
+
+        if (error) {
+            console.error(error);
+        }
+
+        return [];
+    }
+
+    // For expo strings files in base64
+    @Mutation(() => [MediaDataType])
+    async uploadString(
+        @Arg('files', () => [FileStringInput])
+        files: FileStringInput[],
+        @Arg('owner', () => String, {nullable: true}) owner: string
+    ): Promise<MediaDataType[]> {
+        const [error, allFiles] = await awaitTo(
+            Promise.all(
+                files.map(async (file) => {
+                    const {filename, mimetype, uri}: any = file;
+
+                    const encoding = 'base64';
+
+                    let uriData = uri;
+
+                    const newFileNameID = generateUUID();
+                    const fileExt = getFileExtension(mimetype);
+
+                    const fullfilename = `${newFileNameID}.${fileExt}`;
+
+                    log('preview ---------------------------->', {
+                        filename,
+                        mimetype,
+                        fileExt,
+                    });
+
+                    // remove the the prefixes
+                    // TODO for audio files, and other files, focus on images for now
+                    // TODO move to utility
+                    if (fileExt === 'png') {
+                        uriData = uriData.replace(/^data:image\/png;base64,/, '');
+                    }
+
+                    if (fileExt === 'jpeg') {
+                        uriData = uriData.replace(/^data:image\/jpeg;base64,/, '');
+                    }
+
+                    // Save file to local
+                    const localFile = `/tmp/${fullfilename}`;
+                    fs.writeFileSync(localFile, uriData, {encoding});
+
+                    // Save file to cloud
+                    const savedToCloudUrl = await uploadFileToBucket(
+                        localFile,
+                        fullfilename,
+                        mimetype
+                    );
+
                     if (!savedToCloudUrl) {
                         throw new Error('Not saved to cloud, please try again');
                     }

@@ -11,6 +11,7 @@ export const configureFirebase = () => {
     }
     const {project_id} = config;
     const auth = admin.auth;
+    const storage = admin.storage;
     const projectId = project_id;
-    return {auth, projectId};
+    return {auth, storage, projectId};
 };

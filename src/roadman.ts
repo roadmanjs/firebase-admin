@@ -1,5 +1,6 @@
 import {RoadMan, RoadmanBuild} from '@roadmanjs/core';
 
+import MediaResolver from './media/media.resolver';
 import chalk from 'chalk';
 import {configureFirebase} from './firebase';
 
@@ -20,3 +21,5 @@ export const firebaseRoadman: RoadMan = async (args: RoadmanBuild): Promise<Road
 
     return args;
 };
+
+export const getMediaFileUploadResolvers = () => [MediaResolver];

@@ -26,6 +26,12 @@ export class MediaDataType {
 
     @Field(() => String, {nullable: true})
     owner?: string;
+
+    @Field(() => Date, {nullable: true})
+    createdAt?: Date;
+
+    @Field(() => Date, {nullable: true})
+    updatedAt?: Date;
 }
 
 /**

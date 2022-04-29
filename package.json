@@ -68,7 +68,8 @@
     },
     "peerDependencies": {
         "typescript": ">=2.0",
-        "couchset": ">=0.0.15"
+        "couchset": ">=0.0.15",
+        "@roadmanjs/couchset": ">=0.0.7"
     },
     "dependencies": {
         "@roadmanjs/core": "^0.0.3",

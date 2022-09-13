@@ -6,7 +6,7 @@ export async function uploadFileToBucket(
     fileDest: string,
     contentType = 'image/png'
 ): Promise<string> {
-    const {projectId, storage: adminStorage} = configureFirebase();
+    const {projectId, storage: adminStorage} = await configureFirebase();
     const storage = adminStorage();
 
     const bucketName = `${projectId}.appspot.com`;

@@ -1,11 +1,10 @@
 import * as admin from 'firebase-admin';
 
-import {AppOptions, app} from 'firebase-admin';
-
+import {app} from 'firebase-admin';
 import config from '../config';
 
 interface FirebaseConfig {
-    appOptions: AppOptions;
+    appOptions: any; // serviceAccount json
     name?: string;
 }
 
@@ -15,9 +14,16 @@ interface FirebaseProject extends app.App {
 
 export const configureFirebase = async (fbconfig?: FirebaseConfig): Promise<FirebaseProject> => {
     if (fbconfig) {
-        const initAndReturn = () => {
+        const initAndReturn = async () => {
+            const app = await admin.initializeApp(
+                {
+                    credential: admin.credential.cert(fbconfig.appOptions),
+                    databaseURL: `https://${fbconfig.appOptions.project_id}.firebaseio.com`,
+                },
+                fbconfig.name
+            );
+
             // initialize app
-            const app = admin.initializeApp(fbconfig.appOptions, fbconfig.name);
             return {...app, projectId: fbconfig.name};
         };
 
@@ -36,7 +42,11 @@ export const configureFirebase = async (fbconfig?: FirebaseConfig): Promise<Fire
 
     // default
     if (!admin.apps.length) {
-        defaultApp = await admin.initializeApp(config);
+        defaultApp = await admin.initializeApp({
+            credential: admin.credential.cert(config as any),
+            databaseURL: `https://${config.project_id}.firebaseio.com`,
+        });
+
         const {project_id} = config;
         const projectId = project_id;
         return {projectId, ...defaultApp};

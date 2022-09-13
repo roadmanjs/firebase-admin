@@ -3,12 +3,12 @@ import * as admin from 'firebase-admin';
 import {app} from 'firebase-admin';
 import config from '../config';
 
-interface FirebaseConfig {
+export interface FirebaseConfig {
     appOptions: any; // serviceAccount json
     name?: string;
 }
 
-interface FirebaseProject extends app.App {
+export interface FirebaseProject extends app.App {
     projectId: string;
 }
 

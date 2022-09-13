@@ -10,7 +10,7 @@ import {log} from '@roadmanjs/logs';
  * @param RoadmanBuild
  */
 export const firebaseRoadman: RoadMan = async (args: RoadmanBuild): Promise<RoadmanBuild> => {
-    const {projectId} = configureFirebase();
+    const {projectId} = await configureFirebase();
 
     log(
         'ROADMAN: Firebase',

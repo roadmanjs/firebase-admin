@@ -18,28 +18,31 @@ export const configureFirebase = async (fbconfig?: FirebaseConfig): Promise<Fire
         const initAndReturn = () => {
             // initialize app
             const app = admin.initializeApp(fbconfig.appOptions, fbconfig.name);
-            return {...app, projectId: app.options.projectId};
+            return {...app, projectId: fbconfig.name};
         };
 
         // check if app is already initialized, return it
         if (admin.apps.length) {
             const app = admin.apps.find((app) => app.name === fbconfig.name);
             if (app) {
-                return {...app, projectId: app.options.projectId};
+                return {...app, projectId: app.name};
             }
             return initAndReturn();
         }
         return initAndReturn();
     }
 
-    let defaultApp: app.App = admin as unknown as app.App;
+    let defaultApp: app.App;
 
     // default
     if (!admin.apps.length) {
-        defaultApp = admin.initializeApp(config);
+        defaultApp = await admin.initializeApp(config);
+        const {project_id} = config;
+        const projectId = project_id;
+        return {projectId, ...defaultApp};
     }
 
-    const {project_id} = config;
-    const projectId = project_id;
+    defaultApp = admin.apps[0];
+    const projectId = defaultApp.options.projectId;
     return {projectId, ...defaultApp};
 };

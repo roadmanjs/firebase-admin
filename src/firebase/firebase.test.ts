@@ -19,6 +19,16 @@ describe('Firebase', () => {
         expect(projectId).to.equal('stqnetwork-dev');
     });
 
+    it('should init firebase custom project then default project', async () => {
+        const firebaseProject = await configureFirebase(opts);
+        const projectId = firebaseProject.projectId;
+        console.log('projectId', projectId);
+        expect(projectId).to.equal(customProjectId);
+
+        const defaultProject = await configureFirebase();
+        expect(defaultProject.projectId).to.equal('stqnetwork-dev');
+    });
+
     it('should init firebase custom project', async () => {
         const firebaseProject = await configureFirebase(opts);
         const projectId = firebaseProject.projectId;

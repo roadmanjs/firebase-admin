@@ -53,6 +53,6 @@ export const configureFirebase = async (fbconfig?: FirebaseConfig): Promise<Fire
     }
 
     defaultApp = admin.apps[0];
-    const projectId = defaultApp.options.projectId;
+    const projectId = config.project_id;
     return {projectId, ...defaultApp};
 };

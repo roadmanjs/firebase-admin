@@ -23,7 +23,7 @@ module.exports = {
         '@typescript-eslint/ban-ts-ignore': 'off',
         '@typescript-eslint/camelcase': 'off',
         '@typescript-eslint/no-this-alias': 'off',
-
+        '@typescript-eslint/no-var-requires': 'off',
         'import/default': 'off',
         'import/order': 'off',
         'import/no-duplicates': 'error',

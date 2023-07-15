@@ -68,9 +68,10 @@
         "typescript": "^4.4.3"
     },
     "peerDependencies": {
-        "typescript": ">=2.0",
+        "@roadmanjs/couchset": ">=0.0.7",
         "couchset": ">=0.0.15",
-        "@roadmanjs/couchset": ">=0.0.7"
+        "graphql-upload": ">=16.0.2",
+        "typescript": ">=2.0"
     },
     "dependencies": {
         "@roadmanjs/core": "^0.0.3",
@@ -81,7 +82,7 @@
         "debug": "^4.3.1",
         "dotenv": "^8.2.0",
         "firebase-admin": "^10.0.0",
-        "graphql-upload": "^13.0.0",
+        "graphql-upload": "^16.0.2",
         "lodash": "^4.17.20",
         "uuid": "^8.3.2"
     }

@@ -1,5 +1,4 @@
 import {awaitTo} from '@stoqey/client-graphql';
-import {GraphQLUpload} from 'graphql-upload';
 import {promisify} from 'util';
 import {finished} from 'stream';
 import {Arg, Mutation, Resolver} from 'type-graphql';
@@ -10,6 +9,10 @@ import {getFileExtension} from '../_utils/file.utils';
 import {uploadFileToBucket} from './media.methods';
 import {log} from '@roadmanjs/logs';
 import fs from 'fs';
+import {GraphQLScalarType} from 'graphql';
+
+// @typescript-eslint/no-var-requires
+const GraphQLUpload: GraphQLScalarType = require('graphql-upload/GraphQLUpload.js');
 
 const finishes = promisify(finished);
 @Resolver(MediaDataType)
@@ -17,8 +20,7 @@ export class MediaResolver {
     // for web based Files
     @Mutation(() => [MediaDataType])
     async upload(
-        @Arg('files', () => [GraphQLUpload], {nullable: false})
-        files: FileInput[],
+        @Arg('files', () => [GraphQLUpload], {nullable: false}) files: FileInput[],
         @Arg('owner', () => String, {nullable: true}) owner: string
     ): Promise<MediaDataType[]> {
         const [error, allFiles] = await awaitTo(

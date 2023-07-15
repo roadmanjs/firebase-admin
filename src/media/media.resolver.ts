@@ -9,10 +9,7 @@ import {getFileExtension} from '../_utils/file.utils';
 import {uploadFileToBucket} from './media.methods';
 import {log} from '@roadmanjs/logs';
 import fs from 'fs';
-import {GraphQLScalarType} from 'graphql';
-
-// @typescript-eslint/no-var-requires
-const GraphQLUpload: GraphQLScalarType = require('graphql-upload/GraphQLUpload.js');
+import {GraphQLUpload} from 'graphql-upload';
 
 const finishes = promisify(finished);
 @Resolver(MediaDataType)

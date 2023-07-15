@@ -20,8 +20,15 @@ jobs:
       - name: "Setup Node.js"
         uses: "actions/setup-node@v1"
         with:
-          node-version: 12
+          node-version: 16
 
+      # Install packages with yarn
+      - name: "Install"
+        run: yarn
+
+      - name: "Build"
+        run: yarn build  
+        
       # Automated Version Bump
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
@@ -29,13 +36,6 @@ jobs:
           tag-prefix: ""
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Install packages with yarn
-      - name: "Install"
-        run: yarn
-
-      - name: "Build"
-        run: yarn build        
 
       - name: npm publish client
         run: |

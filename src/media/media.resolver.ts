@@ -9,8 +9,7 @@ import {getFileExtension} from '../_utils/file.utils';
 import {uploadFileToBucket} from './media.methods';
 import {log} from '@roadmanjs/logs';
 import fs from 'fs';
-import {GraphQLUpload} from 'graphql-upload';
-
+import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
 const finishes = promisify(finished);
 @Resolver(MediaDataType)
 export class MediaResolver {

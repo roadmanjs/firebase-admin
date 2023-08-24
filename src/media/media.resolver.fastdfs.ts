@@ -1,7 +1,7 @@
 import {awaitTo} from '@stoqey/client-graphql';
 import {promisify} from 'util';
 import {finished} from 'stream';
-import {Arg, Mutation, Resolver} from 'type-graphql';
+import {Arg, Mutation, Resolver, Ctx, UseMiddleware} from 'type-graphql';
 import {FileInput, FileStringInput} from './file.input';
 import {MediaDataModel, MediaDataType} from './media.model';
 import {generateUUID} from '../_utils/uuid';
@@ -10,16 +10,21 @@ import {uploadFileToFastdfs} from './media.methods';
 import {log} from '@roadmanjs/logs';
 import fs from 'fs';
 import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
+import {ContextType, isAuth} from '@roadmanjs/auth';
+import _get from 'lodash/get';
 
 const finishes = promisify(finished);
 @Resolver(MediaDataType)
 export class MediaResolverFastdfs {
     // for web based Files uploadFileToFastdfs
+    @UseMiddleware(isAuth)
     @Mutation(() => [MediaDataType])
     async uploadFastdfs(
-        @Arg('files', () => [GraphQLUpload], {nullable: false}) files: FileInput[],
-        @Arg('owner', () => String, {nullable: true}) owner: string
+        @Ctx() ctx: ContextType,
+        @Arg('files', () => [GraphQLUpload], {nullable: false}) files: FileInput[]
     ): Promise<MediaDataType[]> {
+        const owner = _get(ctx, 'payload.userId', '');
+
         const [error, allFiles] = await awaitTo(
             Promise.all(
                 files.map(async (file) => {
@@ -86,12 +91,14 @@ export class MediaResolverFastdfs {
     }
 
     // For expo strings files in base64
+    @UseMiddleware(isAuth)
     @Mutation(() => [MediaDataType])
     async uploadStringFastdfs(
+        @Ctx() ctx: ContextType,
         @Arg('files', () => [FileStringInput], {nullable: false})
-        files: FileStringInput[],
-        @Arg('owner', () => String, {nullable: true}) owner: string
+        files: FileStringInput[]
     ): Promise<MediaDataType[]> {
+        const owner = _get(ctx, 'payload.userId', '');
         const [error, allFiles] = await awaitTo(
             Promise.all(
                 files.map(async (file) => {

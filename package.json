@@ -75,6 +75,7 @@
         "typescript": ">=2.0"
     },
     "dependencies": {
+        "@roadmanjs/auth": "^0.0.32",
         "@roadmanjs/core": "^0.0.3",
         "@roadmanjs/couchset": "^0.0.6",
         "@roadmanjs/logs": "^0.0.1",

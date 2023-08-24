@@ -2,8 +2,8 @@ import {MediaDataTypeFragment} from './media.fragment';
 import gql from 'graphql-tag';
 
 export const UPLOAD_FILES_MUTATION = gql`
-    mutation UploadFiles($owner: String, $files: [Upload!]!) {
-        data: upload(owner: $owner, files: $files) {
+    mutation UploadFiles($files: [Upload!]!) {
+        data: upload(files: $files) {
             ...MediaDataTypeFragment
         }
     }
@@ -11,8 +11,8 @@ export const UPLOAD_FILES_MUTATION = gql`
 `;
 
 export const UPLOAD_STRING_FILES_MUTATION = gql`
-    mutation UploadStringFiles($owner: String, $files: [FileStringInput!]!) {
-        data: uploadString(owner: $owner, files: $files) {
+    mutation UploadStringFiles($files: [FileStringInput!]!) {
+        data: uploadString(files: $files) {
             ...MediaDataTypeFragment
         }
     }
@@ -21,8 +21,8 @@ export const UPLOAD_STRING_FILES_MUTATION = gql`
 
 // FASTDFS
 export const UPLOAD_FILES_FASTDFS_MUTATION = gql`
-    mutation UploadFilesFastdfs($owner: String, $files: [Upload!]!) {
-        data: uploadFastdfs(owner: $owner, files: $files) {
+    mutation UploadFilesFastdfs($files: [Upload!]!) {
+        data: uploadFastdfs(files: $files) {
             ...MediaDataTypeFragment
         }
     }
@@ -30,8 +30,8 @@ export const UPLOAD_FILES_FASTDFS_MUTATION = gql`
 `;
 
 export const UPLOAD_STRING_FILES_FASTDFS_MUTATION = gql`
-    mutation UploadStringFilesFastdfs($owner: String, $files: [FileStringInput!]!) {
-        data: uploadStringFastdfs(owner: $owner, files: $files) {
+    mutation UploadStringFilesFastdfs($files: [FileStringInput!]!) {
+        data: uploadStringFastdfs(files: $files) {
             ...MediaDataTypeFragment
         }
     }

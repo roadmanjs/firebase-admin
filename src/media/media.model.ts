@@ -21,6 +21,18 @@ export class MediaDataType {
     @Field(() => String, {nullable: true})
     encoding?: string;
 
+    @Field(() => String, {
+        nullable: true,
+        description: 'The server where the file is stored, e.g fastdfs',
+    })
+    server?: string;
+
+    @Field(() => Number, {nullable: true})
+    size?: number;
+
+    @Field(() => String, {nullable: true})
+    path?: string;
+
     @Field(() => String, {nullable: true})
     url?: string;
 

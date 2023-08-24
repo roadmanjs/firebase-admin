@@ -13,6 +13,9 @@ export interface MediaDataType {
     filename?: string;
     mimetype?: string;
     encoding?: string;
+    server?: string;
+    size?: number;
+    path?: string;
     url?: string;
     createdAt?: Date;
     updatedAt?: Date;
@@ -26,6 +29,9 @@ export const MediaDataTypeFragment = gql`
         filename
         mimetype
         encoding
+        server
+        size
+        path
         url
     }
 `;

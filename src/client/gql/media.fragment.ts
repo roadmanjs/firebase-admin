@@ -5,7 +5,6 @@ export interface FileStringInput {
     mimetype: string;
     uri: string;
 }
-
 export interface MediaDataType {
     id?: string;
     name?: string;

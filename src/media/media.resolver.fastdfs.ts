@@ -18,12 +18,14 @@ const finishes = promisify(finished);
 export class MediaResolverFastdfs {
     // for web based Files uploadFileToFastdfs
     @UseMiddleware(isAuth)
-    @Mutation(() => [MediaDataType])
+    @Mutation(() => [MediaDataType], {nullable: true})
     async uploadFastdfs(
         @Ctx() ctx: ContextType,
         @Arg('files', () => [GraphQLUpload], {nullable: false}) files: FileInput[]
     ): Promise<MediaDataType[]> {
         const owner = _get(ctx, 'payload.userId', '');
+
+        log('uploadFastdfs', {owner, allFiles: files.length, files});
 
         const [error, allFiles] = await awaitTo(
             Promise.all(
@@ -92,7 +94,7 @@ export class MediaResolverFastdfs {
 
     // For expo strings files in base64
     @UseMiddleware(isAuth)
-    @Mutation(() => [MediaDataType])
+    @Mutation(() => [MediaDataType], {nullable: true})
     async uploadStringFastdfs(
         @Ctx() ctx: ContextType,
         @Arg('files', () => [FileStringInput], {nullable: false})

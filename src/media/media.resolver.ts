@@ -12,7 +12,7 @@ import fs from 'fs';
 import _get from 'lodash/get';
 import {ContextType, isAuth} from '@roadmanjs/auth';
 
-import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
+import {GraphQLUpload} from 'graphql-upload';
 const finishes = promisify(finished);
 @Resolver(MediaDataType)
 export class MediaResolver {

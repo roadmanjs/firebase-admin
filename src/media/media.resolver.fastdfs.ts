@@ -9,7 +9,7 @@ import {getFileExtension} from '../_utils/file.utils';
 import {uploadFileToFastdfs} from './media.methods';
 import {log} from '@roadmanjs/logs';
 import fs from 'fs';
-import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
+import {GraphQLUpload} from 'graphql-upload';
 import {ContextType, isAuth} from '@roadmanjs/auth';
 import _get from 'lodash/get';
 

@@ -13,7 +13,8 @@ import _get from 'lodash/get';
 import {isAuth} from '../middlewares';
 import {ContextType} from '../shared';
 
-import GraphQLUpload from 'graphql-upload/GraphQLUpload.mjs';
+// TODO
+import {GraphQLUpload} from 'graphql-upload';
 const finishes = promisify(finished);
 @Resolver(MediaDataType)
 export class MediaResolver {

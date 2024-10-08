@@ -56,7 +56,7 @@ describe('Firebase', () => {
 
         const files = await storage
             .bucket(`${customProjectId}.appspot.com`)
-            .getFiles({directory: 'thumb'});
+            .getFiles({prefix: 'thumb'});
 
         console.log('files', files);
 

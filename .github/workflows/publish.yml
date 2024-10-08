@@ -20,14 +20,14 @@ jobs:
       - name: "Setup Node.js"
         uses: "actions/setup-node@v1"
         with:
-          node-version: 16
+          node-version: 18
 
       # Install packages with yarn
       - name: "Install"
-        run: yarn
+        run: npm i
 
       - name: "Build"
-        run: yarn build  
+        run: npm run build  
         
       # Automated Version Bump
       - name: "Automated Version Bump"

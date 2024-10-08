@@ -1,6 +1,6 @@
 {
     "name": "@roadmanjs/firebase-admin",
-    "version": "0.0.28",
+    "version": "0.1.0",
     "description": "A roadman for firebase-admin",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -63,28 +63,28 @@
         "prettier": "^2.0.5",
         "reflect-metadata": "^0.1.13",
         "rimraf": "^2.5.4",
-        "ts-node": "^9.1.1",
+        "ts-node": "^10.9.2",
         "tslint": "^5.11.0",
         "tslint-config-standard": "^8.0.1",
-        "typescript": "^4.4.3"
+        "typescript": "^5.6.2"
     },
     "peerDependencies": {
-        "@roadmanjs/couchset": ">=0.0.7",
-        "couchset": ">=0.0.15",
+        "@roadmanjs/couchset": ">=0.1.1",
+        "couchset": ">=0.0.18",
         "graphql-upload": ">=13.0.0",
         "typescript": ">=2.0"
     },
     "dependencies": {
-        "@roadmanjs/auth": "^0.0.32",
         "@roadmanjs/core": "^0.0.3",
-        "@roadmanjs/couchset": "^0.0.6",
+        "@roadmanjs/couchset": ">=0.1.1",
         "@roadmanjs/logs": "^0.0.1",
         "@roadmanjs/utils": "^0.0.4",
+        "@stoqey/client-graphql": "^1.1.13",
         "chalk": "^4.1.0",
         "debug": "^4.3.1",
         "dotenv": "^8.2.0",
         "firebase-admin": "^10.0.0",
-        "graphql-upload": "13",
+        "graphql-upload": ">=13.0.0",
         "lodash": "^4.17.20",
         "request": "^2.88.2",
         "uuid": "^8.3.2"

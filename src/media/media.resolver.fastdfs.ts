@@ -10,7 +10,8 @@ import {uploadFileToFastdfs} from './media.methods';
 import {log} from '@roadmanjs/logs';
 import fs from 'fs';
 import {GraphQLUpload} from 'graphql-upload';
-import {ContextType, isAuth} from '@roadmanjs/auth';
+import {isAuth} from '../middlewares';
+import {ContextType} from '../shared';
 import _get from 'lodash/get';
 
 const finishes = promisify(finished);
